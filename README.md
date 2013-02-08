@@ -9,8 +9,11 @@ the same message format as the JeeNodes:
 * data, the data of the message
 * crc, the crc in little-endian format
 
-The code uses a finite state machine which organise the operation mode of the RFM12. You can
-reveive, send messages or power down the RFM12. 
+The code uses a finite state machine which organizes the operation mode of the RFM12. You can
+receive, send messages or power down the RFM12. After initialization the fsm is idle. You can transmit
+or receive a message. Therefore to change the operation mode the fsm must be idle. While sending you 
+are not able to receive a message. Since you have to wait for a message, you call in a loop 
+<code>rf12mListen()</code>. This switch on the receiver.
 
 # Sending a message
 
@@ -48,7 +51,7 @@ By calling <code>rf12mListen()</code> we turn on the reveiver, if it is possible
 to check if the RFM12 did receive a message. The message will be written the buffer <code>rf12Buffer</code> which
 is also used for sending. After receiving the message you should process the message in the buffer. While
 processing the buffer won't be overwritten by the next message. By calling <code>didProcess()</code> the state
-of the fsm (finite state machine) will be change to be idle. Now you can receive the next message or 
+of the fsm (finite state machine) will be changed to be idle. Now you can receive the next message or 
 answer by sending a message.
 
 <pre><code>
