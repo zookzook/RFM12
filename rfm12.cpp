@@ -288,7 +288,7 @@ void rfm12_feedback() {
 
     uint8_t in = rfm12_cmd( RFM_RX_FIFO_READ );
     rfm12Buffer[ rfm12Index++ ]= in;
-    // did we reached the end of message or buffer?
+    // did we reache the end of message or buffer?
     if( rfm12Index >= rfm12Buffer[ 2 ] + 5 || rfm12Index >= RFM_MAX ) {      
       rfm12State= RFM12_DATA_RECEIVED;
       rfm12_cmd( RFM_IDLE_MODE );
@@ -320,7 +320,7 @@ void rfm12_feedback() {
  * updates the finite state machine. The client code tells the machine
  * that message was processed and the RFM12 should continue.
  */
-void didProcessed() {  
+void didProcess() {  
   if( rfm12State == RFM12_DATA_RECEIVED ) { rfm12State= RFM12_IDLE; }
 }
 
@@ -347,7 +347,7 @@ void rfm12Listen() {
 /**
  * check status and proof the message by crc...
  */
-boolean didReceived() {
+boolean didReceive() {
 
   if( rfm12State == RFM12_DATA_RECEIVED ) {
     uint16_t crc= 1;

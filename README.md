@@ -45,9 +45,9 @@ void loop() {
 
 To receive the message that we sent before. We initializes the RFM12 with node id 1 and group 200.
 By calling <code>rf12mListen()</code> we turn on the reveiver, if it is possible. Call <code>idReceived()</code>
-to check if the RFM12 did received a message. The message will be written the buffer <code>rf12Buffer</code> which
+to check if the RFM12 did receive a message. The message will be written the buffer <code>rf12Buffer</code> which
 is also used for sending. After receiving the message you should process the message in the buffer. While
-processing the buffer won't be overwritten by the next message. By calling <code>didProcessed()</code> the state
+processing the buffer won't be overwritten by the next message. By calling <code>didProcess()</code> the state
 of the fsm (finite state machine) will be change to be idle. Now you can receive the next message or 
 answer by sending a message.
 
@@ -65,12 +65,12 @@ void loop () {
   
   rf12mListen();  
   
-   if (didReceived() ) {
+   if (didReceive() ) {
      Payload* p= (Payload*)&rf12Buffer[ 2 ];        
      Serial.print( p->counter );
      Serial.print( ". Temperature:" );
      Serial.println( (float)p->temp / 100.0 );
-     didProcessed();
+     didProcess();
     }      
 }
 </code>

@@ -65,18 +65,18 @@ void rfm12_listen();
 /**
  * true, if we have a message with a valid crc.
  */
-boolean rfm12_didReceived();
+boolean rfm12_didReceive();
 
 /**
- * if rfm12_didReceived == true then process the message in rfm12Buffer
+ * if rfm12_didReceive == true then process the message in rfm12Buffer
  * rfm12Buffer[ 0 ] : header (node id)
  * rfm12Buffer[ 1 ] : length of message 
  * rfm12Buffer[ 2 ] : here begins the data
  *
- * For the next message call rfm12_didProcessed to reset the buffer and 
+ * For the next message call rfm12_didProcess to reset the buffer and 
  * set the receiver on.
  */
-void rfm12_didProcessed();
+void rfm12_didProcess();
 
 /**
  * checks if we are able to send. If the result is true then we have to send the message
